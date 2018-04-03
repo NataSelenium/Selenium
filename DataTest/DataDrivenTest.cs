@@ -18,24 +18,31 @@ namespace SeleniumTask1.DataTest
     [TestClass]
     public class DataDrivenTest
     {
-        IWebDriver driver = new ChromeDriver();
-
+        IWebDriver driver = new ChromeDriver(@"C:\Users\nataliadamorad\Documents\Visual Studio 2015\Projects\SeleniumTask1\SeleniumTask1");
 
         [TestMethod]
         [DeploymentItem("Data.xlsx")]
-        [DataSource("System.Data.OleDb", "Provider=Microsoft.         ACE.OLEDB.12.0;Data Source=Data.xls;Persist Security          Info=False;Extended Properties='Excel 12.0;HDR=Yes'", "Data$", DataAccessMethod.Sequential)]
+        [DataSource("System.Data.OleDb", "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Data.xlsx; Persist Security Info=False;Extended Properties='Excel 12.0;HDR=Yes'", "Sheet1$", DataAccessMethod.Sequential)]
         public void DataDrivenTestMethod()
         {
             driver.Navigate().GoToUrl("https://192.168.100.26/");
             IWebElement Username = driver.FindElement(By.Id("Username"));
-            Username.SendKeys((TestContext.DataRow["Username"]).ToString());
+            Username.SendKeys((TestContext.DataRow[0]).ToString());
 
             IWebElement Password = driver.FindElement(By.Id("Password"));
-            Password.SendKeys((TestContext.DataRow["Password"]).ToString());
+            Password.SendKeys((TestContext.DataRow[1]).ToString());
 
             driver.FindElement(By.Id("SubmitButton")).Click();
-            Assert.AreEqual("RMSys - Home", driver.Title.ToString());
-            TestContext.WriteLine("The user " + (TestContext.DataRow["Username"]).ToString() +  " was sign succesfully");
+            if (driver.Title.ToString() == "RMSys - Home")
+            {
+                TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " was sign succesfully :)");
+            }
+            else
+            {
+                TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " has Invalid credentials :(");
+            }
+            //Assert.AreEqual("RMSys - Home", driver.Title.ToString());
+           
         }
         [TestCleanup()]
         public void MyTestCleanup()
