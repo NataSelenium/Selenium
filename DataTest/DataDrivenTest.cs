@@ -27,21 +27,21 @@ namespace SeleniumTask1.DataTest
         {
             driver.Navigate().GoToUrl("https://192.168.100.26/");
             IWebElement Username = driver.FindElement(By.Id("Username"));
-            Username.SendKeys((TestContext.DataRow[0]).ToString());
+            Username.SendKeys((TestContext.DataRow["UserName"]).ToString());
 
             IWebElement Password = driver.FindElement(By.Id("Password"));
-            Password.SendKeys((TestContext.DataRow[1]).ToString());
+            Password.SendKeys((TestContext.DataRow["Password"]).ToString());
 
             driver.FindElement(By.Id("SubmitButton")).Click();
-            if (driver.Title.ToString() == "RMSys - Home")
-            {
-                TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " was sign succesfully :)");
-            }
-            else
-            {
-                TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " has Invalid credentials :(");
-            }
-            //Assert.AreEqual("RMSys - Home", driver.Title.ToString());
+            //if (driver.Title.ToString() == "RMSys - Home")
+            //{
+            //    TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " was sign succesfully :)");
+            //}
+            //else
+            //{
+            //    TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " has Invalid credentials :(");
+            //}
+            Assert.AreEqual("RMSys - Home", driver.Title.ToString());
            
         }
         [TestCleanup()]
