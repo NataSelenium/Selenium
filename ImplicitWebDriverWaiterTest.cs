@@ -21,7 +21,7 @@ namespace SeleniumTask1
             //Go to the URL
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com");
             //Verify if page was loaded
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             //Find web element - link
             IWebElement webElement =  driver.FindElement(By.LinkText("Drag and Drop"));
             //Verify if link text is correct

@@ -3,6 +3,7 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -30,7 +31,7 @@ namespace SeleniumTask1
             //It's explicit waiter. The test stops running for 1000 milliseconds
             Thread.Sleep(1000);
             //Wait when the 'Sign Out' link appears
-            IWebElement webElement = (new WebDriverWait(driver, TimeSpan.FromSeconds(10))).Until(driver => driver.FindElement(By.LinkText("Sign Out")));
+            IWebElement webElement = (new WebDriverWait(driver, TimeSpan.FromSeconds(10))).Until(ExpectedConditions.ElementIsVisible(By.LinkText("Sign Out")));
         }
 
         [TestCleanup]

@@ -12,7 +12,7 @@ namespace SeleniumTask1
     public class JSAlertTest
     {
         IWebDriver driver = new ChromeDriver();
- 
+
         [TestMethod]
         public void JSAlertTestMethod()
         {
@@ -21,7 +21,8 @@ namespace SeleniumTask1
            IWebElement button = driver.FindElement(By.XPath("//button[@onclick='jsAlert()']"));
             //Clicking button will show a Alert with OK Button 
             button.Click();
-            try {
+            try
+            {
                 //Get the Alert        
                 IAlert alert = driver.SwitchTo().Alert();
                 //Click OK button     
@@ -29,11 +30,11 @@ namespace SeleniumTask1
                 //Verify if Page displays correct message
                 IWebElement message = driver.FindElement(By.Id("result"));
                 Assert.AreEqual("You successfuly clicked an alert", message.Text);
-                }
+             }
             catch (NoAlertPresentException e)
-            {
+             {
                 e.StackTrace.ToString();
-            }
+             }
        } 
 
         [TestCleanup()]

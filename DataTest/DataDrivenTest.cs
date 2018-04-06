@@ -1,13 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support;
-using OpenQA.Selenium.Support.UI;
-using System.Data;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumTask1.DataTest
 {
@@ -18,14 +11,17 @@ namespace SeleniumTask1.DataTest
     [TestClass]
     public class DataDrivenTest
     {
-        IWebDriver driver = new ChromeDriver(@"C:\Users\nataliadamorad\Documents\Visual Studio 2015\Projects\SeleniumTask1\SeleniumTask1");
+
+        IWebDriver driver = new ChromeDriver();
 
         [TestMethod]
         [DeploymentItem("Data.xlsx")]
+        [DeploymentItem(@"chromedriver.exe")]
         [DataSource("System.Data.OleDb", "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Data.xlsx; Persist Security Info=False;Extended Properties='Excel 12.0;HDR=Yes'", "Sheet1$", DataAccessMethod.Sequential)]
         public void DataDrivenTestMethod()
         {
             driver.Navigate().GoToUrl("https://192.168.100.26/");
+
             IWebElement Username = driver.FindElement(By.Id("Username"));
             Username.SendKeys((TestContext.DataRow["UserName"]).ToString());
 
@@ -33,14 +29,7 @@ namespace SeleniumTask1.DataTest
             Password.SendKeys((TestContext.DataRow["Password"]).ToString());
 
             driver.FindElement(By.Id("SubmitButton")).Click();
-            //if (driver.Title.ToString() == "RMSys - Home")
-            //{
-            //    TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " was sign succesfully :)");
-            //}
-            //else
-            //{
-            //    TestContext.WriteLine("The user " + (TestContext.DataRow[0]).ToString() + " has Invalid credentials :(");
-            //}
+
             Assert.AreEqual("RMSys - Home", driver.Title.ToString());
            
         }

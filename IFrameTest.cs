@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -21,18 +19,21 @@ namespace SeleniumTask1
         {
             //Go to the URL
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/iframe");
+
             //Switch to the frame with Id = 'mce_0_ifr'
             driver.SwitchTo().Frame("mce_0_ifr");
-            //Find the web element <p> in the frame
-            IWebElement paragraphElement =  driver.FindElement(By.XPath("//body/p"));
-            //Clear the <p> text
-            paragraphElement.Clear();
-            //Create the IJavaScriptExecutor object
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            //Run the java script
-            js.ExecuteScript("return document.getElementsByTagName(\"p\")[0].innerHTML='Hello World!'; ");
-            //Verify if <p> text is correct
-            Assert.AreEqual("Hello World!", paragraphElement.Text);
+
+            //Find the web element body in the frame
+            IWebElement bodyElement = driver.FindElement(By.Id("tinymce"));
+
+            //Clear the text 
+            bodyElement.Clear();
+
+            //Input the text
+            bodyElement.SendKeys("Hello World!");
+
+            //Verify if body text is correct
+            Assert.AreEqual("Hello World!", bodyElement.Text);
         }
 
         [TestCleanup()]
