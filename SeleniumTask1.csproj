@@ -53,6 +53,10 @@
       <HintPath>..\packages\Selenium.WebDriverBackedSelenium.3.11.0\lib\net45\Selenium.WebDriverBackedSelenium.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SeleniumExtras.PageObjects, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetSeleniumExtras.PageObjects.3.11.0\lib\net45\SeleniumExtras.PageObjects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
       <Private>True</Private>
@@ -90,17 +94,27 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ClassLocationSelenium.cs" />
+    <Compile Include="LoginMailRuTest.cs" />
+    <Compile Include="LogoutMailRuTest.cs" />
+    <Compile Include="PageObjectTest\PageObjects\InboxPage.cs" />
+    <Compile Include="Task12\ClassLocationSelenium.cs" />
     <Compile Include="DataTest\DataDrivenTest.cs" />
-    <Compile Include="ExplicitWebDriverWaiterTest.cs" />
-    <Compile Include="IFrameTest.cs" />
-    <Compile Include="ImplicitWebDriverWaiterTest.cs" />
-    <Compile Include="JSAlertTest.cs" />
-    <Compile Include="JSConfirmTest.cs" />
-    <Compile Include="JSPromptTest.cs" />
-    <Compile Include="LoginTest.cs" />
+    <Compile Include="Task12\ExplicitWebDriverWaiterTest.cs" />
+    <Compile Include="Task12\IFrameTest.cs" />
+    <Compile Include="Task12\ImplicitWebDriverWaiterTest.cs" />
+    <Compile Include="Task12\JSAlertTest.cs" />
+    <Compile Include="Task12\JSConfirmTest.cs" />
+    <Compile Include="Task12\JSPromptTest.cs" />
+    <Compile Include="Task12\LoginTest.cs" />
+    <Compile Include="PageFactoryTest\PageObjects\InboxPage.cs" />
+    <Compile Include="PageFactoryTest\PageObjects\LoginPage.cs" />
+    <Compile Include="PageFactoryTest\TestCases\LoginTest.cs" />
+    <Compile Include="PageFactoryTest\TestCases\LogoutTest.cs" />
+    <Compile Include="PageObjectTest\TestCases\LoginTest.cs" />
+    <Compile Include="PageObjectTest\TestCases\LogoutTest.cs" />
+    <Compile Include="PageObjectTest\PageObjects\LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LogoutTest.cs" />
+    <Compile Include="Task12\LogoutTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -110,6 +124,7 @@
   <ItemGroup>
     <Content Include="chromedriver.exe" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

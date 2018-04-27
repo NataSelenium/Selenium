@@ -1,2 +1,0 @@
-# Selenium
-Selenium Training Tasks
