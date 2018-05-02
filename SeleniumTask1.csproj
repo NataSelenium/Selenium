@@ -95,6 +95,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="LoginMailRuTest.cs" />
+    <Compile Include="LoginTestScreenshot.cs" />
     <Compile Include="LogoutMailRuTest.cs" />
     <Compile Include="PageObjectTest\PageObjects\InboxPage.cs" />
     <Compile Include="Task12\ClassLocationSelenium.cs" />
