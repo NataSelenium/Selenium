@@ -1,9 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SeleniumTask1.PageObjectTest.PageObjects
 {
@@ -13,7 +10,7 @@ namespace SeleniumTask1.PageObjectTest.PageObjects
     [TestClass]
     public class LoginClassicTest
     {
-        IWebDriver seleniumDriver;
+        private IWebDriver seleniumDriver = new ChromeDriver();
         const string loginValue = "nataliadamorad";
         const string passwordValue = "Vintage2018";
         const string expectedTitle = "RMSys - Home";
@@ -21,12 +18,9 @@ namespace SeleniumTask1.PageObjectTest.PageObjects
         [TestMethod, TestCategory("Page Object Classic")]
         public void LoginClassicTestMethod()
         {
-            seleniumDriver = new ChromeDriver();
             LoginPage loginPage = new LoginPage(seleniumDriver);
             loginPage.GetPage();
             loginPage.Login(loginValue, passwordValue);
-            var wait = new WebDriverWait(seleniumDriver, TimeSpan.FromSeconds(2));
-            wait.Until(ExpectedConditions.TitleContains(expectedTitle));
             Assert.AreEqual(expectedTitle, seleniumDriver.Title.ToString());
         }
 

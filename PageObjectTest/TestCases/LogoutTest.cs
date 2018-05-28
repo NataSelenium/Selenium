@@ -1,9 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SeleniumTask1.PageObjectTest.PageObjects
 {
@@ -13,22 +10,18 @@ namespace SeleniumTask1.PageObjectTest.PageObjects
     [TestClass]
     public class LogoutClassicTest
     {
-        IWebDriver seleniumDriver;
+        private IWebDriver seleniumDriver = new ChromeDriver();
         const string loginValue = "nataliadamorad";
         const string passwordValue = "Vintage2018";
-        const string exitCssSelector = "a[title='Sign out']";
         const string expectedTitle = "RMSys - Sign In";
 
         [TestMethod, TestCategory("Page Object Classic")]
         public void LogoutClassicTestMethod()
         {
-            seleniumDriver = new ChromeDriver();
             LoginPage loginPage = new LoginPage(seleniumDriver);
             loginPage.GetPage();
             loginPage.Login(loginValue,passwordValue);
             InboxPage inboxPage = new InboxPage(seleniumDriver);
-            var wait = new WebDriverWait(seleniumDriver, TimeSpan.FromSeconds(2));
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(exitCssSelector)));
             inboxPage.ClickExit();
             Assert.AreEqual(expectedTitle, seleniumDriver.Title.ToString());
         }
