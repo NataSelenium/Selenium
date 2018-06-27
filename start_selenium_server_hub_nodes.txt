@@ -1,0 +1,21 @@
+//set the hub on 1st PC '192.168.1.219'
+java -jar selenium-server-standalone-3.9.1.jar -role hub
+
+//set the node on the same machine + set chromedriver
+java -Dwebdriver.chrome.driver=c:\chrome\chromedriver.exe -jar selenium-server-standalone-3.9.1.jar -role node -hub http://10.10.102.12:4444/grid/register -port 5555
+
+//set the node on the same machine + set geckodriver
+java -Dwebdriver.gecko.driver=c:\firefox\geckodriver.exe -jar selenium-server-standalone-3.9.1.jar -role node -hub http://10.10.102.12:4444/grid/register -port 5556
+
+//set the nodes on the 2nd machine '192.168.1.200'
+//set the node on the same machine + set chromedriver
+java -Dwebdriver.chrome.driver=c:\chrome\chromedriver.exe -jar selenium-server-standalone-3.9.1.jar -role node -hub http://10.10.102.12:4444/grid/register -port 5555
+
+//set the node on the same machine + set geckodriver
+java -Dwebdriver.gecko.driver=c:\firefox\geckodriver.exe -jar selenium-server-standalone-3.9.1.jar -role node -hub http://10.10.102.12:4444/grid/register -port 5556
+
+Note: 
+1. SeleniumGridTest1 with Chrome run successfully on the both PCs
+2. SeleniumGridTest2 with FireFox on the both PC open the mail.ru page and failed with timeout after 60 sec
+I saw status bar with information: 'Perfoming a TSL handshake to .......
+when I change 'mail.ru' to 'https://rmsys.issoft.by/', I got failed script with error 'InsecureCertificate'

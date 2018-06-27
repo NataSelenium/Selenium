@@ -21,8 +21,6 @@ namespace SeleniumTask1.SeleniumGrid
         public void SeleniumGridTestMethod2()
         {
             var options = new FirefoxOptions();
-            //options.BrowserExecutableLocation= @"C:\firefox\geckodriver.exe";
-            //options.BrowserExecutableLocation = "C:\\Program Files\\Mozilla Firefox\\firefox.exe";
             driver = new RemoteWebDriver(new Uri("http://10.10.102.12:4444/wd/hub"), options.ToCapabilities());
             driver.Navigate().GoToUrl("https://mail.ru/");
             //driver.Manage().Window.Maximize();
